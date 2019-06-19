@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{path('homepage')}}">Sym BNB</a>
+    <button aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbarColor03" data-toggle="collapse" type="button">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{{path('homepage')}}">Accueil</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('ad_index')}}">Annonces</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Mon Compte!</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% for key, messages in app.flashes %}
+    <div class="container">
+        <div class="alert alert-{{ key }}">
+            {% for message in messages %}
+                {{ message | raw }}
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}
