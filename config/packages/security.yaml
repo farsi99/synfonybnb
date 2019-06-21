@@ -1,13 +1,36 @@
 security:
+    #cela nous permet de choisir l'algorithme qu'on veut
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
+        #symfony va aller chercher ds la base, l'entité user et le propriété email pour me connecter
+        in_database: 
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             anonymous: true
+
+            #On appelle le provider à appliquer pour se connecter
+            provider: in_database
+
+            #On appelle le formulaire de connexion
+            form_login:
+                login_path: acount_login
+                check_path: acount_login
+            
+            logout:
+                path: acount_logout
+                target: acount_login
+
 
             # activate different ways to authenticate
 

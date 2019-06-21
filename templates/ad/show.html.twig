@@ -11,62 +11,65 @@
                 {{ad.introduction}}</p>
             <p class="h2">
                 <strong>
-                    {{ad.romms}}</strong>
-                chambres
-            </strong>pour<strong>
-                {{ad.price}}
-                euros</strong>
-            par nuit</p>
-        <a href="#" class="btn btn-primary">Reserver !</a>
-    </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 mb-3">
-            {{ad.content|raw}}
-            <div class="carousel slide" data-ride="carousel" id="carouselExampleIndicators">
-                <ol class="carousel-indicators">
-                    {% for image in ad.images %}
-                        <li {% if loop.first %} class="active" {% endif %} data-slide-to="{{loop.index0}}" data-target="#carouselExampleIndicators"></li>
-                    {% endfor %}
-                </ol>
-                <div class="carousel-inner">
-                    {% for image in ad.images %}
-                        <div class="carousel-item {% if loop.first %}active{% endif %}">
-                            <img alt="First slide" class="d-block w-100" src="{{image.url}}">
-                                <div class="carousel-caption d-none d-md-block">
-                                    <h5>
-                                        {{ad.title}}</h5>
-                                    <p>
-                                        {{image.caption}}</p>
-                                </div>
-                            </div>
-                        {% endfor %}
-                        <a class="carousel-control-prev" data-slide="prev" href="#carouselExampleIndicators" role="button">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Précedent</span>
-                        </a>
-                        <a class="carousel-control-next" data-slide="next" href="#carouselExampleIndicators" role="button">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Suivant</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="row mb-6">
-                    <div class="col-4">
-                        <img src="http://placehold.it/64x64" alt="Avatar de farouk"></div>
-                        <div class="col">
-                            <h3>Joseph Farouk</h3>
-                            <span class="badge badge-primary">3 annonces</span>
+                    {{ad.romms}}</strong>chambres
+            </p>
+        </strong>pour<strong>
+            {{ad.price}}
+            euros</strong>
+        par nuit</p>
+    <a class="btn btn-primary" href="#">Reserver !</a>
+</div></div><div class="container">
+<div class="row">
+    <div class="col-md-8 mb-3">
+        {{ad.content|raw}}
+        <div class="carousel slide" data-ride="carousel" id="carouselExampleIndicators">
+            <ol class="carousel-indicators">
+                {% for image in ad.images %}
+                    <li {% if loop.first %} class="active" {% endif %} data-slide-to="{{loop.index0}}" data-target="#carouselExampleIndicators"></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+                {% for image in ad.images %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        <img alt="First slide" class="d-block w-100" src="{{image.url}}">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>
+                                {{ad.title}}</h5>
+                            <p>
+                                {{image.caption}}</p>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur nobis asperiores excepturi minima, inventore repellat ipsam fugiat. Impedit, unde ratione.</p>
-                        <p>Nihil distinctio officia sint vel dicta? At consequatur tempora laborum vitae iste consectetur, labore itaque culpa cupiditate ad sequi sit!</p>
-                        <p>Quaerat impedit voluptatibus maiores cum itaque eum esse, accusantium aperiam sapiente aut ducimus. Autem, dolore fugiat? Amet, culpa. Fugiat, accusamus.</p>
                     </div>
-                </div>
+                {% endfor %}
+                <a class="carousel-control-prev" data-slide="prev" href="#carouselExampleIndicators" role="button">
+                    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                    <span class="sr-only">Précedent</span>
+                </a>
+                <a class="carousel-control-next" data-slide="next" href="#carouselExampleIndicators" role="button">
+                    <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                    <span class="sr-only">Suivant</span>
+                </a>
             </div>
         </div>
     </div>
-{% endblock %}
+    <div
+        class="col-md-4">
+        <!-- on crée une variable de twig -->
+        {% set a=ad.author %}
+
+        <div class="row mb-6">
+            <div class="col-3">
+                <a href="{{path('user_show',{'slug':a.slug})}}">
+                    <img src="{{a.picture}}" class="avatar avatar-meduim" alt="Avatar de {{a.firstName}}"></a>
+            </div>
+            <div class="col">
+                <a href="{{path('user_show', {'slug': a.slug})}}">
+                    <h3>{{a.firstName}}
+                        {{a.lastName}}</h3>
+                </a>
+                <span class="badge badge-primary">{{a.ads |length }}
+                    anonces</span>
+            </div>
+            {{a.description | raw}}
+        </div>
+    </div>
+</div></div></div>{% endblock %}
