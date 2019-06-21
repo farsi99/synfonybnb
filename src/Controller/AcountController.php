@@ -6,14 +6,15 @@ use App\Entity\User;
 use App\Form\AccountType;
 use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
+use App\Form\PasswordUpdateType;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use App\Form\PasswordUpdateType;
-use Symfony\Component\Form\FormError;
 
 class AcountController extends AbstractController
 {
@@ -66,6 +67,7 @@ class AcountController extends AbstractController
     /**
      * permet de modifier un profil utilisateur
      * @Route("/acount/profil", name="acount_profil")
+     * @IsGranted("ROLE_USER")
      *
      * @return Response
      */
@@ -87,6 +89,7 @@ class AcountController extends AbstractController
     /**
      * Permet de modifier le mot de passe
      *@Route("/acount/update-password", name="acount_password")
+     *@IsGranted("ROLE_USER")
      * @return Response
      */
     public function updatePassword(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
@@ -118,6 +121,7 @@ class AcountController extends AbstractController
     /**
      * Permet d'afficher mon profil
      * @Route("/acount", name="acount_index")
+     * @IsGranted("ROLE_USER")
      * @return Response 
      * */
     public function myAccount()

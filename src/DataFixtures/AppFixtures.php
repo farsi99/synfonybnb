@@ -4,11 +4,13 @@ namespace App\DataFixtures;
 
 use App\Entity\Ad;
 use Faker\Factory;
+use App\Entity\Role;
+use App\Entity\User;
 use App\Entity\Image;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
 
 class AppFixtures extends Fixture
 {
@@ -23,6 +25,21 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('FR-fr');
 
+        //creéons un role pour les users
+        $adminRole = new Role();
+        $adminRole->setTitle('ADMIN_ROLE');
+        $manager->persist($adminRole);
+        //On crée un admin par défaut
+        $adminUser = new User();
+        $adminUser->setFirstName('Farouk');
+        $adminUser->setLastName('Soulé');
+        $adminUser->setEmail('farsi_99@hotmail.com');
+        $adminUser->setHash($this->encoder->encodePassword($adminUser, 'password'));
+        $adminUser->setPicture('https://avatars.io/twitter/LiiorC');
+        $adminUser->setIntroduction($faker->sentence());
+        $adminUser->setDescription('<p>' . join('</p><p>', $faker->paragraphs(5)) . '</p>');
+        $adminUser->addUserRole($adminRole);
+        $manager->persist($adminUser);
         //Nous gerons les utilisateurs
         $users = [];
         $genres = ['male', 'female'];
