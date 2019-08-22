@@ -5,10 +5,39 @@
 {% form_theme form 'ad/_collection.html.twig' %}
 {% block body %}
     <div class="container">
-        <h1>Création d'une nouvelle annonce</h1>
+        <h1 class="my-5">Création d'une nouvelle annonce</h1>
         {{form_start(form)}}
-        {{form_widget(form)}}
-        <button class="btn btn-primary" type="submit">Créer une nouvelle annonce</button>
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-light">
+                    <h3>Information générale</h3>
+                    <hr>
+                    {{form_row(form.title)}}
+                    {{form_row(form.slug)}}
+                    {{form_row(form.price)}}
+                    {{form_row(form.romms)}}
+                </div>
+                <div class="alert alert-light">
+                    <h3>Détail de l'aonnce</h3>
+                    <hr>
+                    {{ form_row(form.introduction)}}
+                    {{ form_row(form.content)}}
+
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="alert alert-light">
+                    <h3>Image de l'annonce</h3>
+                    <hr>
+                    {{ form_row(form.coverImage)}}
+                    {{form_row(form.images)}}
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">
+            <i class="fas fa-check"></i>
+            Créer une nouvelle annonce</button>
         {{form_end(form)}}
     </div>
 {% endblock %}

@@ -1,4 +1,4 @@
-div.container {
+div.container, div.container-fluid {
     margin-top: 20px;
 }
 div.add-title{
@@ -11,6 +11,13 @@ div.add-title h1, div.add-title p{
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 
 }
+
+div.add-title .btn{
+margin-top: 1em;
+font-size: 1em;
+line-height: 1em;
+}
+
 div.carousel-caption{
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
@@ -27,4 +34,21 @@ div.carousel-caption{
 .avatar-mini{
     max-width: 24px;
     max-height: 24px;
+}
+.avatar-micro{
+    max-width: 20px;
+    max-height: 20px;
+}
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover{
+    color:firebrick !important;
+}
+span.rating i{
+    color: goldenrod;
+}
+
+.alert a{
+    text-decoration: none;
+}
+.alert .btn{
+    color: white;
 }

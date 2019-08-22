@@ -2,7 +2,9 @@
     <p>Ici, vous pouvez ajouter vos propres images !</p>
     {{form_widget(form)}}
     <input id="widgets_counter" type="hidden" value="0">
-    <button class="btn btn-primary" id="add-image" type="button">Ajouter une image</button>
+    <button class="btn btn-primary" id="add-image" type="button">
+        <i class="fas fa-plus"></i>
+        Ajouter une image</button>
 {% endblock %}
 
 {% block _annonce_images_entry_row %}
